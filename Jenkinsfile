@@ -19,15 +19,6 @@ pipeline {
                 }
             }
         }
-        stage("Maven Build") {
-            steps {
-                script {
-                    sh """
-		    mvn package && cp ./target/*.war ./docker
-		    """
-                }
-            }
-        }
 	stage("docker login") {
             steps {
                    sh """
