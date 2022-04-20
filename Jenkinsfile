@@ -57,7 +57,6 @@ pipeline {
 	    	    sshpass -p $PASSWORD  ssh -o "StrictHostKeyChecking=no"  $USERNAME@${PRODE}
 		    docker pull tomcat
 		    docker run -d -p 8088:8080 tomcat
-
                 '''
                  }
             }
