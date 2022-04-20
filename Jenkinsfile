@@ -55,6 +55,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'root_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {		
                 sh '''
 	    	    sshpass -p $PASSWORD  ssh -o "StrictHostKeyChecking=no"  $USERNAME@${PRODE}
+		    docker pull tomcat:5.0
                 '''
                  }
             }
