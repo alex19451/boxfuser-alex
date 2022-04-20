@@ -22,13 +22,13 @@ pipeline {
         stage("Maven Build") {
             steps {
                 script {
-                    sh "cd boxfuser-alex && mvn package"
+                    sh "mvn package"
                 }
             }
         }
 		stage('Make docker image') {
 			steps {
-				sh 'cd cd boxfuser-alex && docker build --tag=gateway-api .'
+				sh 'cd boxfuser-alex && docker build --tag=gateway-api .'
 
 				}
 		}
