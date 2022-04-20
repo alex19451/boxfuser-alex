@@ -31,7 +31,7 @@ pipeline {
      stage('Make docker image') {
 	steps {
 		sh """
-		cd ./docker && docker build . -t tomcat:${VERSION}
+		cd ./docker && docker build . -t ${NEXUS_URL}/tomcat:${VERSION}
 		"""
 
 		}
