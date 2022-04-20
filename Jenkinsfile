@@ -28,7 +28,7 @@ pipeline {
         }
 		stage('Make docker image') {
 			steps {
-				sh 'docker build --tag=gateway-api .'
+				sh 'docker build .'
 
 				}
 		}
