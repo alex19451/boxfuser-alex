@@ -22,7 +22,7 @@ pipeline {
         stage("Maven Build") {
             steps {
                 script {
-                    sh "ls -l"
+                    sh "mvn package"
                 }
             }
         }
