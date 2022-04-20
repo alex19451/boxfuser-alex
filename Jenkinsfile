@@ -32,8 +32,7 @@ pipeline {
 	    stage("docker login") {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                sh 
-                '''
+                sh '''
 	    	    docker login ${NEXUS_URL} -u $USERNAME -p $PASSWORD
                 '''
                  }
@@ -41,17 +40,13 @@ pipeline {
         }
         stage('Make docker image') {
 	       steps {
-	       sh 
-               '''
-	    	cd ./docker && docker build . -t ${NEXUS_URL}/tomcat:${VERSION}
-	       '''
+	       sh 'cd ./docker && docker build . -t ${NEXUS_URL}/tomcat:${VERSION}'
 	    
 	    	}
 	    }
         stage("docker push") {
             steps {
-            sh 
-	    '''
+            sh '''
 	    	docker push ${NEXUS_URL}/tomcat:${VERSION}
             '''
             }
@@ -59,8 +54,7 @@ pipeline {
         stage("ssh login") {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'root_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                sh 
-                '''
+                sh '''
 	    	    sshpass -p $PASSWORD ssh $USERNAME@${PRODE}
                 '''
                  }
