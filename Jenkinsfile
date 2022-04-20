@@ -22,8 +22,7 @@ pipeline {
         stage("Maven Build") {
             steps {
                 script {
-                sh 
-		'''
+                sh '''
 	    	mvn package && cp ./target/*.war ./docker
 	    	'''
                     }
