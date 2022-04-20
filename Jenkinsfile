@@ -28,6 +28,15 @@ pipeline {
                 }
             }
         }
+	stage("docker login") {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh """
+		    docker login ${NEXUS_URL} -u $USERNAME -p $PASSWORD
+                    """
+                }
+            }
+        }
      stage('Make docker image') {
 	steps {
 		sh """
