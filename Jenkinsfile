@@ -10,6 +10,7 @@ pipeline {
        NEXUS_PROTOCOL = "http"
        NEXUS_URL = "51.250.15.213:8081"
        NEXUS_REPOSITORY = "docker"
+       VERSION = "5.0"
     }
     stages {
         stage("Clone code from VCS") {
@@ -28,7 +29,7 @@ pipeline {
         }
 		stage('Make docker image') {
 			steps {
-				sh 'cd ./docker && docker build .'
+				sh 'cd ./docker && docker build . -t tomcat:${VERSION}"'
 
 				}
 		}
