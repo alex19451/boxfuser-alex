@@ -54,7 +54,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'root_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {		
                 sh '''
-	    	    sshpass -p $PASSWORD -P 'Enter passphrase for key' ssh -T $USERNAME@${PRODE}
+	    	    sshpass -p $PASSWORD  ssh o "StrictHostKeyChecking=no"  $USERNAME@${PRODE}
                 '''
                  }
             }
