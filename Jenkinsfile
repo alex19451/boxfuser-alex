@@ -22,7 +22,8 @@ pipeline {
         stage("Maven Build") {
             steps {
                 script {
-                  sh """
+                sh 
+		"""
 	    	mvn package && cp ./target/*.war ./docker
 	    	"""
                     }
@@ -41,7 +42,7 @@ pipeline {
         stage('Make docker image') {
 	       steps {
 	       sh 
-           """
+               """
 	    	cd ./docker && docker build . -t ${NEXUS_URL}/tomcat:${VERSION}
 	       """
 	    
@@ -49,7 +50,8 @@ pipeline {
 	    }
         stage("docker push") {
             steps {
-            sh """
+            sh 
+		"""
 	    	docker push ${NEXUS_URL}/tomcat:${VERSION}
             """
             }
