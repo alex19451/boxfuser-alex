@@ -6,7 +6,7 @@ pipeline {
 		}
 	}
     environment {
-       NEXUS_URL = "51.250.15.213:8081"
+       NEXUS_URL = "51.250.15.213:8083"
        VERSION = "5.0"
     }
     stages {
