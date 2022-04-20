@@ -1,7 +1,7 @@
 pipeline {
     agent { 
 	docker {
-            image 'baseimage:4.0'	
+            image 'baseimage:5.0'	
 	     args '-v /var/run/docker.sock:/var/run/docker.sock -e HOME=${workspace} --group-add docker'
 		}
 	}
@@ -22,13 +22,13 @@ pipeline {
         stage("Maven Build") {
             steps {
                 script {
-                    sh "mvn package"
+                    sh "cd boxfuser-alex && mvn package"
                 }
             }
         }
 		stage('Make docker image') {
 			steps {
-				sh 'docker build --tag=gateway-api .'
+				sh 'cd cd boxfuser-alex && docker build --tag=gateway-api .'
 
 				}
 		}
