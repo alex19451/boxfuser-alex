@@ -3,14 +3,13 @@ pipeline {
     docker {
       image 'baseimage:2.0'
     }
+	}
     environment {
        NEXUS_VERSION = "nexus3"
        NEXUS_PROTOCOL = "http"
        NEXUS_URL = "51.250.15.213:8081"
        NEXUS_REPOSITORY = "docker"
     }
-
-  }
     stages {
         stage("Clone code from VCS") {
             steps {
@@ -30,7 +29,7 @@ pipeline {
 			steps {
 				sh 'docker build --tag=gateway-api .'
 
-			     }
+				}
 		}
 		
     }
