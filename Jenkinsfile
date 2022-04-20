@@ -52,10 +52,9 @@ pipeline {
 	    }
         stage("ssh login") {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'root_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-		sh 'ssh-keyscan -H {PRODE} >> ~/.ssh/known_hosts'		
+                withCredentials([usernamePassword(credentialsId: 'root_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {		
                 sh '''
-	    	    sshpass -p $PASSWORD ssh -T $USERNAME@${PRODE}
+	    	    sshpass -p $PASSWORD -P 'Enter passphrase for key' ssh -T $USERNAME@${PRODE}
                 '''
                  }
             }
