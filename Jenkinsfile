@@ -1,8 +1,8 @@
 pipeline {
     agent { 
 	docker {
-            image 'baseimage:5.0'	
-	     args '-v /var/run/docker.sock:/var/run/docker.sock -v /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket -e HOME=${workspace} --group-add docker'
+            image 'baseimage:4.0'	
+	     args '-v /var/run/docker.sock:/var/run/docker.sock -e HOME=${workspace} --group-add docker'
 		}
 	}
     environment {
