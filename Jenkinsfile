@@ -46,7 +46,7 @@ pipeline {
         stage("docker push") {
             steps {
             sh '''
-	    	docker push ${NEXUS_URL}/tomcat:${VERSION}
+	    	docker push ${NEXUS_URL}/tomcatweb:${VERSION}
             '''
             }
 	    }
@@ -56,8 +56,8 @@ pipeline {
                 sh '''
 	    	    sshpass -p $PASSWORD  ssh -o "StrictHostKeyChecking=no"  $USERNAME@${PRODE}
 		    docker pull tomcat
-		    docker run -d -p 8098:8080 tomcat
-                '''
+		    docker run -d -p 8098:8080 tomcatweb
+		'''
                  }
             }
         }
