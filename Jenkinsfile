@@ -22,13 +22,13 @@ pipeline {
         stage("Maven Build") {
             steps {
                 script {
-                    sh "mvn package"
+                    sh "ls -l && mvn package"
                 }
             }
         }
 		stage('Make docker image') {
 			steps {
-				sh 'cd docker && ls -l  && docker build .'
+				sh 'cd docker && docker build .'
 
 				}
 		}
