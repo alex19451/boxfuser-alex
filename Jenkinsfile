@@ -1,10 +1,10 @@
 pipeline {
     agent { 
-		docker {
+	docker {
             image 'baseimage:4.0'	
-			args '-v /var/run/docker.sock:/var/run/docker.sock' 
-			}
+	     args '--privileged  --network host -v /etc/passwd:/etc/passwd -v /etc/group:/etc/group -v /var/run/docker.sock:/var/run/docker.sock' 
 		}
+	}
     environment {
        NEXUS_VERSION = "nexus3"
        NEXUS_PROTOCOL = "http"
