@@ -50,12 +50,14 @@ pipeline {
             '''
             }
 	    }
-        stage("ssh login") {
+        stage("docker pul") {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'root_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {		
                 sh '''
 	    	    sshpass -p $PASSWORD  ssh -o "StrictHostKeyChecking=no"  $USERNAME@${PRODE}
-		    docker pull tomcat:5.0
+		    docker pull tomcat
+		    docker run -d -p 8088:8080 tomcat
+
                 '''
                  }
             }
