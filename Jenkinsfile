@@ -7,6 +7,8 @@ pipeline {
 	}
     environment {
        NEXUS_URL = "51.250.15.213:8083"
+       NEXUS_USER = 'admin'
+       NEXUS_PASS = '123123'
        VERSION = "5.0"
     }
     stages {
@@ -28,11 +30,9 @@ pipeline {
         }
 	stage("docker login") {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh """
-		   docker login ${NEXUS_URL} -u $USERNAME -p $PASSWORD
+                   sh """
+		   docker login ${NEXUS_URL} -u ${NEXUS_USER} -p ${NEXUS_PASS}
                     """
-                }
             }
         }
 	stage('Make docker image') {
