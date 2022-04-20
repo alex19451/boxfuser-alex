@@ -29,7 +29,7 @@ pipeline {
         }
 		stage('Make docker image') {
 			steps {
-				sh 'cd ./docker && docker build . -t tomcat:${VERSION}"'
+				sh 'cd ./docker && docker build . -t tomcat:${VERSION}'
 
 				}
 		}
