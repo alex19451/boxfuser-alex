@@ -22,7 +22,7 @@ pipeline {
         stage("Maven Build") {
             steps {
                 script {
-                    sh "cd boxfuser-alex && mvn package"
+                    sh "ls -l"
                 }
             }
         }
