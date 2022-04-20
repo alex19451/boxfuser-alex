@@ -7,9 +7,8 @@ pipeline {
 	}
     environment {
        NEXUS_URL = "51.250.15.213:8083"
-       NEXUS_USER = 'admin'
-       NEXUS_PASS = '123123'
        VERSION = "5.0"
+       DOCKER_CONFIG = "${WORKSPACE}/docker.config"
     }
     stages {
         stage("Clone code from VCS") {
