@@ -7,7 +7,6 @@ pipeline {
 	}
     environment {
        NEXUS_URL = "51.250.15.213:8081"
-       NEXUS_REPOSITORY = "docker"
        VERSION = "5.0"
     }
     stages {
@@ -25,21 +24,27 @@ pipeline {
                 }
             }
         }
+		stage("docker login") {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh """
+                    docker login ${NEXUS_URL} -u $USERNAME -p $PASSWORD
+                    """
+                }
+            }
+        }
 		stage('Make docker image') {
 			steps {
 				sh 'cd ./docker && docker build . -t tomcat:${VERSION}'
 
 				}
 		}
-		stage("docker login") {
+		stage("docker push") {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'docker-registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                    sh """
-                    docker login 51.250.15.213:8083 -u $USERNAME -p $PASSWORD
-                    """
-                }
+                sh '''
+                docker push ${NEXUS_URL}/tomcat:${VERSION}
+                '''
             }
-        }
 		
     }
 }
