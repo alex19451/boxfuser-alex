@@ -28,7 +28,7 @@ pipeline {
         }
 		stage('Make docker image') {
 			steps {
-				sh 'pwd && docker build..'
+				sh 'ls -l && docker build..'
 
 				}
 		}
