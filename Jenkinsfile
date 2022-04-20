@@ -1,10 +1,11 @@
 pipeline {
-    agent {
-        label "master"
+  agent {
+
+    docker {
+      image 'baseimage:1.0'
     }
-    tools {
-        maven "maven3"
-    }
+
+  }
     stages {
         stage("Clone code from VCS") {
             steps {
@@ -16,7 +17,7 @@ pipeline {
         stage("Maven Build") {
             steps {
                 script {
-                    sh "mvn package -DskipTests=true"
+                    sh "mvn package"
                 }
             }
         }
