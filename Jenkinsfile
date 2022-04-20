@@ -2,7 +2,7 @@ pipeline {
     agent { 
 	docker {
             image 'baseimage:5.0'	
-	     args '-v /var/run/docker.sock:/var/run/docker.sock -e HOME=${workspace} --group-add docker'
+	     args '-v /var/run/docker.sock:/var/run/docker.sock'
 		}
 	}
     environment {
