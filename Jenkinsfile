@@ -54,7 +54,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'root_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh '''
-	    	    sshpass -p $PASSWORD ssh $USERNAME@${PRODE}
+	    	    sshpass -t -p $PASSWORD ssh $USERNAME@${PRODE}
                 '''
                  }
             }
