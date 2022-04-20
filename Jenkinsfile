@@ -6,8 +6,6 @@ pipeline {
 		}
 	}
     environment {
-       NEXUS_VERSION = "nexus3"
-       NEXUS_PROTOCOL = "http"
        NEXUS_URL = "51.250.15.213:8081"
        NEXUS_REPOSITORY = "docker"
        VERSION = "5.0"
@@ -33,6 +31,15 @@ pipeline {
 
 				}
 		}
+		stage("docker login") {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh """
+                    docker login 51.250.15.213:8083 -u $USERNAME -p $PASSWORD
+                    """
+                }
+            }
+        }
 		
     }
 }
