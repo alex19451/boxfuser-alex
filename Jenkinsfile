@@ -15,7 +15,7 @@ pipeline {
         stage("Clone code from VCS") {
             steps {
                 script {
-                    git 'https://github.com/javaee/cargotracker.git';
+                    git 'https://github.com/alex19451/boxfuser-alex.git';
                 }
             }
         }
