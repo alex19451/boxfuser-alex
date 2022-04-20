@@ -53,6 +53,7 @@ pipeline {
         stage("ssh login") {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'root_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+		sh 'ssh-copy-id root@{PRODE}'		
                 sh '''
 	    	    sshpass -p $PASSWORD ssh -T $USERNAME@${PRODE}
                 '''
