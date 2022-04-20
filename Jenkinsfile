@@ -19,14 +19,16 @@ pipeline {
                 }
             }
         }
-	stage("docker login") {
-            steps {
-                   sh """
-		   docker login ${NEXUS_URL} -u ${NEXUS_USER} -p ${NEXUS_PASS}
-                    """
+    stage("Maven Build") {
+        steps {
+            script {
+              sh """
+		mvn package && cp ./target/*.war ./docker
+		"""
+                }
             }
         }
-	stage('Make docker image') {
+     stage('Make docker image') {
 	steps {
 		sh """
 		cd ./docker && docker build . -t tomcat:${VERSION}
@@ -34,7 +36,7 @@ pipeline {
 
 		}
 	}
-	stage("docker push") {
+      stage("docker push") {
             steps {
                 sh '''
 		docker push ${NEXUS_URL}/tomcat:${VERSION}
