@@ -7,7 +7,7 @@ pipeline {
 	}
     environment {
        NEXUS_URL = "51.250.15.213:8083"
-       PDODE = "51.250.5.43"
+       PRODE = "51.250.5.43"
        VERSION = "5.0"
        DOCKER_CONFIG = "${WORKSPACE}/docker.config"
     }
