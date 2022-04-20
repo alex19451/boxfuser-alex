@@ -28,7 +28,7 @@ pipeline {
         }
 		stage('Make docker image') {
 			steps {
-				sh 'cd boxfuser-alex && docker build --tag=gateway-api .'
+				sh 'docker build --tag=gateway-api .'
 
 				}
 		}
