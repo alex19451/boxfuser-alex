@@ -22,7 +22,7 @@ pipeline {
         stage("Maven Build") {
             steps {
                 script {
-                    sh "ls -l && mvn package && cp /target/*.war /docker/"
+                    sh "cd /target/ && ls -l && mvn package && cp /target/*.war /docker/"
                 }
             }
         }
