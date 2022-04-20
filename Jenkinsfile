@@ -1,5 +1,5 @@
 pipeline {
-    agent {docker {args '-v /var/run/docker.sock:/var/run/docker.sock'}}
+    agent { docker { args '-v /var/run/docker.sock:/var/run/docker.sock' }}
     environment {
        NEXUS_VERSION = "nexus3"
        NEXUS_PROTOCOL = "http"
