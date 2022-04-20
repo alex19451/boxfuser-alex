@@ -1,14 +1,24 @@
 pipeline {
     agent {
-        docker {
-            image 'maven:3.8.1-adoptopenjdk-11' 
-            args '-v /root/.m2:/root/.m2' 
-        }
+        label "master"
+    }
+    tools {
+        maven "maven3"
     }
     stages {
-        stage('Build') { 
+        stage("Clone code from VCS") {
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                script {
+                    git 'https://github.com/javaee/cargotracker.git';
+                }
+            }
+        }
+        stage("Maven Build") {
+            steps {
+                script {
+                    sh "mvn package -DskipTests=true"
+                }
             }
         }
     }
+}
