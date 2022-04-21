@@ -6,8 +6,8 @@ pipeline {
 		}
 	}
     environment {
-       NEXUS_URL = "51.250.15.213:8083"
-       PRODE = "51.250.5.43"
+       NEXUS_URL = "51.250.74.132:8083"
+       PRODE = "51.250.82.110"
        VERSION = "5.0"
        DOCKER_CONFIG = "${WORKSPACE}/docker.config"
     }
@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Make docker image') {
 	       steps {
-	       sh 'cd ./docker && docker build . -t ${NEXUS_URL}/tomcatweb:${VERSION}'
+	       sh 'cd ./docker && docker build . -t tomcatweb:${VERSION} && docker tag tomcatweb:${VERSION} $NEXUS_URL/tomcatweb:${VERSION}'
 	    
 	    	}
 	    }
