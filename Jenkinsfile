@@ -8,7 +8,7 @@ pipeline {
     environment {
        NEXUS_URL = "51.250.74.132:8083"
        PRODE = "51.250.82.110"
-       VERSION = "5.0"
+       VERSION = "6.0"
        DOCKER_CONFIG = "${WORKSPACE}/docker.config"
     }
     stages {
